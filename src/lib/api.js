@@ -1,0 +1,35 @@
+const BASE = import.meta.env.VITE_APP_API_URL
+
+async function request(url, options = {}) {
+  const res = await fetch(url, options)
+  const text = await res.text()
+  try {
+    return JSON.parse(text)
+  } catch {
+    throw new Error('Invalid server response')
+  }
+}
+
+export function getDashboard() {
+  return request(`${BASE}?action=dashboard`)
+}
+
+export function getHistory(range = 30) {
+  return request(`${BASE}?action=history&range=${range}`)
+}
+
+export function submitDaily(data) {
+  return request(`${BASE}?action=submitDaily`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data),
+  })
+}
+
+export function submitBusiness(data) {
+  return request(`${BASE}?action=submitBusiness`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data),
+  })
+}
