@@ -30,7 +30,7 @@ export default function HistoryView({ cashTarget }) {
           <div key={i} style={styles.row}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <span style={styles.date}>{formatDate(row.date)}</span>
-              <span style={{ ...styles.cash, color: hit ? '#43e97b' : '#ff5f6d' }}>
+              <span style={{ ...styles.cash, color: hit ? '#2A5C3D' : '#7C2B36' }}>
                 {formatCurrency(row.cash_collected)}
               </span>
             </div>
@@ -46,15 +46,15 @@ export default function HistoryView({ cashTarget }) {
 }
 
 const styles = {
-  dim: { fontSize: 13, color: 'rgba(255,255,255,0.35)', marginTop: 12 },
-  error: { fontSize: 13, color: '#ff5f6d', marginTop: 12 },
+  dim: { fontSize: 13, color: '#7A5E65', marginTop: 12, fontWeight: 500 },
+  error: { fontSize: 13, color: '#7C2B36', marginTop: 12, fontWeight: 600 },
   row: {
     padding: '12px 14px',
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.07)',
+    background: 'rgba(255, 255, 255, 0.5)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
     borderRadius: 10,
   },
-  date: { fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.8)' },
+  date: { fontSize: 13, fontWeight: 700, color: '#4A2E35' },
   cash: { fontSize: 14, fontWeight: 700 },
-  meta: { fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4 },
+  meta: { fontSize: 11, color: '#7A5E65', marginTop: 4, fontWeight: 500 },
 }

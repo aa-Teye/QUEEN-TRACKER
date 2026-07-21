@@ -9,9 +9,9 @@ function PinDot({ filled }) {
       width: 14,
       height: 14,
       borderRadius: '50%',
-      background: filled ? 'var(--gold)' : 'var(--white-20)',
+      background: filled ? '#D4A373' : 'rgba(74, 46, 53, 0.1)',
       border: '2px solid',
-      borderColor: filled ? 'var(--gold)' : 'rgba(255,255,255,0.3)',
+      borderColor: filled ? '#D4A373' : 'rgba(74, 46, 53, 0.25)',
       transition: 'all 0.2s ease',
       transform: filled ? 'scale(1.2)' : 'scale(1)'
     }} />
@@ -36,11 +36,11 @@ function PinButton({ label, onClick, disabled }) {
         width: 72,
         height: 72,
         borderRadius: '50%',
-        border: '2px solid rgba(255,255,255,0.15)',
+        border: '1.5px solid rgba(74, 46, 53, 0.08)',
         background: pressed
-          ? 'rgba(245, 200, 66, 0.25)'
-          : 'rgba(255,255,255,0.08)',
-        color: 'var(--white)',
+          ? 'rgba(212, 163, 115, 0.2)'
+          : 'rgba(255, 255, 255, 0.75)',
+        color: '#4A2E35',
         fontSize: label === '⌫' ? 22 : 26,
         fontWeight: label === '⌫' ? 400 : 600,
         fontFamily: 'Inter, sans-serif',
@@ -48,8 +48,8 @@ function PinButton({ label, onClick, disabled }) {
         transition: 'all 0.15s ease',
         transform: pressed ? 'scale(0.92)' : 'scale(1)',
         boxShadow: pressed
-          ? '0 0 20px rgba(245,200,66,0.3)'
-          : '0 2px 8px rgba(0,0,0,0.3)',
+          ? '0 0 15px rgba(212, 163, 115, 0.25)'
+          : '0 2px 8px rgba(74, 46, 53, 0.05)',
         backdropFilter: 'blur(10px)',
         WebkitTapHighlightColor: 'transparent',
         userSelect: 'none',
@@ -113,7 +113,7 @@ export default function PinGate({ onUnlock }) {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '40px 24px',
-      background: 'linear-gradient(160deg, #1a0f3c 0%, #2D1B69 50%, #1a0f3c 100%)',
+      background: 'linear-gradient(135deg, #FFF0F2 0%, #FFFDF9 100%)',
       position: 'relative',
       overflow: 'hidden',
     }}>
@@ -123,7 +123,7 @@ export default function PinGate({ onUnlock }) {
         transform: 'translateX(-50%)',
         width: 300, height: 300,
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(245,200,66,0.08) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(212, 163, 115, 0.1) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
 
@@ -133,27 +133,27 @@ export default function PinGate({ onUnlock }) {
           width: 64,
           height: 64,
           borderRadius: 20,
-          background: 'linear-gradient(135deg, #4a2f9a, #2D1B69)',
-          border: '1.5px solid rgba(245,200,66,0.4)',
+          background: 'linear-gradient(135deg, #FFFDF9, #FFF0F2)',
+          border: '1.5px solid #D4A373',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           margin: '0 auto 16px',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          boxShadow: '0 8px 24px rgba(212, 163, 115, 0.15)',
         }}>
-          <span style={{ fontSize: 26, fontWeight: 800, color: '#F5C842', letterSpacing: -1 }}>QT</span>
+          <span style={{ fontSize: 26, fontWeight: 800, color: '#D4A373', letterSpacing: -1 }}>QT</span>
         </div>
         <h1 style={{
-          fontSize: 22,
-          fontWeight: 700,
-          color: 'var(--white)',
-          letterSpacing: 0.5,
+          fontSize: 24,
+          fontWeight: 800,
+          color: '#4A2E35',
+          letterSpacing: -0.5,
           marginBottom: 6
         }}>
-          The Queenly Tracker
+          Welcome, Selly
         </h1>
-        <p style={{ fontSize: 13, color: 'var(--white-70)', fontWeight: 400 }}>
-          Enter your PIN to continue
+        <p style={{ fontSize: 14, color: '#7A5E65', fontWeight: 500 }}>
+          Kindly enter your PIN
         </p>
       </div>
 
@@ -182,7 +182,7 @@ export default function PinGate({ onUnlock }) {
           <p style={{
             color: 'var(--error)',
             fontSize: 13,
-            fontWeight: 500,
+            fontWeight: 600,
             textAlign: 'center',
             animation: 'fadeIn 0.2s ease',
           }}>

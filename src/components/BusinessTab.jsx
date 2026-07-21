@@ -57,8 +57,8 @@ export default function BusinessTab({ biz, onRefresh }) {
           {biz.name ? biz.name.charAt(0).toUpperCase() : 'B'}
         </div>
         <div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: '#fff' }}>{biz.name}</div>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>
+          <div style={{ fontSize: 18, fontWeight: 800, color: '#4A2E35' }}>{biz.name}</div>
+          <div style={{ fontSize: 12, color: '#7A5E65', marginTop: 2, fontWeight: 500 }}>
             {biz.business_id}
           </div>
         </div>
@@ -66,14 +66,14 @@ export default function BusinessTab({ biz, onRefresh }) {
 
       {/* Monthly Summary */}
       <div style={styles.summaryCard}>
-        <SummaryRow label="Income MTD" value={formatCurrency(biz.income_mtd)} color="#43e97b" />
+        <SummaryRow label="Income MTD" value={formatCurrency(biz.income_mtd)} color="#2A5C3D" />
         <div style={styles.divider} />
-        <SummaryRow label="Expenses MTD" value={formatCurrency(biz.expense_mtd)} color="#ff5f6d" />
+        <SummaryRow label="Expenses MTD" value={formatCurrency(biz.expense_mtd)} color="#7C2B36" />
         <div style={styles.divider} />
         <SummaryRow
           label="Net MTD"
           value={formatCurrency(net)}
-          color={netPositive ? '#F5C842' : '#ff5f6d'}
+          color={netPositive ? '#D4A373' : '#7C2B36'}
           bold
         />
       </div>
@@ -97,18 +97,19 @@ export default function BusinessTab({ biz, onRefresh }) {
             {feedback && (
               <div style={{
                 padding: '10px 14px', borderRadius: 8, fontSize: 13, fontWeight: 500,
-                background: feedback.ok ? 'rgba(67,233,123,0.1)' : 'rgba(255,95,109,0.1)',
-                color: feedback.ok ? '#43e97b' : '#ff5f6d',
-                border: `1px solid ${feedback.ok ? 'rgba(67,233,123,0.3)' : 'rgba(255,95,109,0.3)'}`,
+                background: feedback.ok ? 'rgba(42, 92, 61, 0.08)' : 'rgba(124, 43, 54, 0.08)',
+                color: feedback.ok ? '#2A5C3D' : '#7C2B36',
+                border: `1px solid ${feedback.ok ? 'rgba(42,92,61,0.2)' : 'rgba(124,43,54,0.2)'}`,
               }}>
                 {feedback.msg}
               </div>
             )}
 
             <button type="submit" disabled={loading} style={{
-              background: '#F5C842', color: '#1a0f3c', fontFamily: 'Inter, sans-serif',
+              background: '#D4A373', color: '#fff', fontFamily: 'Inter, sans-serif',
               fontWeight: 700, fontSize: 15, border: 'none', borderRadius: 12,
               padding: 14, cursor: 'pointer', opacity: loading ? 0.6 : 1,
+              boxShadow: '0 4px 12px rgba(212, 163, 115, 0.2)',
             }}>
               {loading ? 'Saving...' : 'Record Transaction'}
             </button>
@@ -122,7 +123,7 @@ export default function BusinessTab({ biz, onRefresh }) {
 function SummaryRow({ label, value, color, bold }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0' }}>
-      <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', fontWeight: bold ? 600 : 400 }}>{label}</span>
+      <span style={{ fontSize: 13, color: '#7A5E65', fontWeight: bold ? 700 : 500 }}>{label}</span>
       <span style={{ fontSize: bold ? 17 : 14, fontWeight: bold ? 700 : 600, color }}>{value}</span>
     </div>
   )
@@ -131,7 +132,7 @@ function SummaryRow({ label, value, color, bold }) {
 function Field({ label, type, value, onChange, placeholder }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-      <label style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.55)', letterSpacing: 0.5, textTransform: 'uppercase' }}>
+      <label style={{ fontSize: 11, fontWeight: 600, color: '#7A5E65', letterSpacing: 0.5, textTransform: 'uppercase' }}>
         {label}
       </label>
       <input
@@ -141,11 +142,11 @@ function Field({ label, type, value, onChange, placeholder }) {
         placeholder={placeholder}
         inputMode={type === 'number' ? 'numeric' : undefined}
         style={{
-          background: 'rgba(255,255,255,0.06)',
-          border: '1px solid rgba(255,255,255,0.12)',
-          borderRadius: 10, color: '#fff', fontSize: 15,
+          background: 'rgba(255, 255, 255, 0.7)',
+          border: '1px solid rgba(74, 46, 53, 0.12)',
+          borderRadius: 10, color: '#4A2E35', fontSize: 15,
           fontFamily: 'Inter, sans-serif', padding: '12px 14px',
-          outline: 'none', width: '100%', colorScheme: 'dark',
+          outline: 'none', width: '100%', colorScheme: 'light',
         }}
       />
     </div>
@@ -156,33 +157,39 @@ const styles = {
   container: { padding: '20px 16px 40px', display: 'flex', flexDirection: 'column', gap: 16 },
   nameCard: {
     display: 'flex', alignItems: 'center', gap: 14,
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
+    background: 'rgba(255, 255, 255, 0.65)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
     borderRadius: 16, padding: '18px 16px',
+    boxShadow: '0 8px 24px rgba(74, 46, 53, 0.03)',
+    backdropFilter: 'blur(8px)',
   },
   bizInitial: {
     width: 48, height: 48, borderRadius: 14,
-    background: 'linear-gradient(135deg, #4a2f9a, #2D1B69)',
-    border: '1px solid rgba(245,200,66,0.3)',
+    background: 'linear-gradient(135deg, #FFFDF9, #FFF0F2)',
+    border: '1px solid #D4A373',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
-    fontSize: 20, fontWeight: 800, color: '#F5C842', flexShrink: 0,
+    fontSize: 20, fontWeight: 800, color: '#D4A373', flexShrink: 0,
   },
   summaryCard: {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
+    background: 'rgba(255, 255, 255, 0.65)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
     borderRadius: 16, padding: '18px 16px',
     display: 'flex', flexDirection: 'column', gap: 12,
+    boxShadow: '0 8px 24px rgba(74, 46, 53, 0.03)',
+    backdropFilter: 'blur(8px)',
   },
-  divider: { height: 1, background: 'rgba(255,255,255,0.06)' },
+  divider: { height: 1, background: 'rgba(74, 46, 53, 0.06)' },
   card: {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
+    background: 'rgba(255, 255, 255, 0.65)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
     borderRadius: 16, padding: '18px 16px',
+    boxShadow: '0 8px 24px rgba(74, 46, 53, 0.03)',
+    backdropFilter: 'blur(8px)',
   },
   cardHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
-  cardTitle: { fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' },
+  cardTitle: { fontSize: 14, fontWeight: 700, color: '#4A2E35' },
   linkBtn: {
-    background: 'none', border: 'none', color: '#F5C842',
-    fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'Inter, sans-serif', padding: '4px 0',
+    background: 'none', border: 'none', color: '#D4A373',
+    fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'Inter, sans-serif', padding: '4px 0',
   },
 }

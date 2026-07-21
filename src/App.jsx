@@ -42,7 +42,7 @@ function MainApp() {
         <div style={styles.logo}>
           <span style={styles.logoText}>QT</span>
         </div>
-        <span style={styles.appName}>Queenly Tracker</span>
+        <span style={styles.appName}>Hello, Queen</span>
         <button style={styles.refreshBtn} onClick={load} title="Refresh">
           {loading ? '...' : '↺'}
         </button>
@@ -59,7 +59,7 @@ function MainApp() {
             }}
             onClick={() => setTab(t.id)}
           >
-            {t.label}
+            {t.label === 'Corporate' ? 'Corporate' : t.label}
           </button>
         ))}
       </nav>
@@ -78,7 +78,7 @@ function MainApp() {
         {loading && !dashboard && (
           <div style={styles.loadingBox}>
             <div style={styles.spinner} />
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', marginTop: 16 }}>
+            <p style={{ fontSize: 13, color: '#7A5E65', marginTop: 16, fontWeight: 500 }}>
               Loading data...
             </p>
           </div>
@@ -118,7 +118,7 @@ export default function App() {
 const styles = {
   root: {
     minHeight: '100dvh',
-    background: 'linear-gradient(160deg, #0f0a1e 0%, #1a0f3c 100%)',
+    background: 'linear-gradient(135deg, #FFF0F2 0%, #FFFDF9 100%)',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -127,8 +127,8 @@ const styles = {
     alignItems: 'center',
     gap: 10,
     padding: '14px 16px 10px',
-    borderBottom: '1px solid rgba(255,255,255,0.07)',
-    background: 'rgba(15,10,30,0.95)',
+    borderBottom: '1px solid rgba(74, 46, 53, 0.08)',
+    background: 'rgba(255, 255, 255, 0.85)',
     position: 'sticky',
     top: 0,
     zIndex: 10,
@@ -136,21 +136,21 @@ const styles = {
   },
   logo: {
     width: 32, height: 32, borderRadius: 9,
-    background: 'linear-gradient(135deg, #4a2f9a, #2D1B69)',
-    border: '1px solid rgba(245,200,66,0.35)',
+    background: 'linear-gradient(135deg, #FFFDF9, #FFF0F2)',
+    border: '1px solid #D4A373',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
   },
-  logoText: { fontSize: 13, fontWeight: 800, color: '#F5C842', letterSpacing: -0.5 },
-  appName: { fontSize: 16, fontWeight: 700, color: '#fff', flex: 1 },
+  logoText: { fontSize: 13, fontWeight: 800, color: '#D4A373', letterSpacing: -0.5 },
+  appName: { fontSize: 16, fontWeight: 800, color: '#4A2E35', flex: 1, fontFamily: 'Inter, sans-serif' },
   refreshBtn: {
-    background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)',
+    background: 'none', border: 'none', color: '#7A5E65',
     fontSize: 20, cursor: 'pointer', padding: '4px 8px', fontFamily: 'Inter, sans-serif',
   },
   tabBar: {
     display: 'flex',
     overflowX: 'auto',
-    borderBottom: '1px solid rgba(255,255,255,0.07)',
-    background: 'rgba(15,10,30,0.95)',
+    borderBottom: '1px solid rgba(74, 46, 53, 0.08)',
+    background: 'rgba(255, 255, 255, 0.85)',
     scrollbarWidth: 'none',
     position: 'sticky',
     top: 57,
@@ -163,7 +163,7 @@ const styles = {
     background: 'none',
     border: 'none',
     borderBottom: '2px solid transparent',
-    color: 'rgba(255,255,255,0.45)',
+    color: '#7A5E65',
     fontSize: 13,
     fontWeight: 600,
     cursor: 'pointer',
@@ -172,8 +172,8 @@ const styles = {
     transition: 'color 0.2s, border-color 0.2s',
   },
   tabActive: {
-    color: '#F5C842',
-    borderBottomColor: '#F5C842',
+    color: '#D4A373',
+    borderBottomColor: '#D4A373',
   },
   content: {
     flex: 1,
@@ -208,8 +208,8 @@ const styles = {
   },
   spinner: {
     width: 32, height: 32,
-    border: '3px solid rgba(255,255,255,0.1)',
-    borderTopColor: '#F5C842',
+    border: '3px solid rgba(74, 46, 53, 0.1)',
+    borderTopColor: '#D4A373',
     borderRadius: '50%',
     animation: 'spin 0.8s linear infinite',
   },

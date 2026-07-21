@@ -58,15 +58,15 @@ export default function CorporateTab({ corporate, month, onRefresh }) {
 
       {/* Month + Pacing Banner */}
       <div style={styles.header}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: 1, textTransform: 'uppercase' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#7A5E65', letterSpacing: 1, textTransform: 'uppercase' }}>
             {isQuarterly ? 'Quarterly Target Overview' : `${formatMonth(month)} Targets`}
           </div>
           <button
             style={styles.editTargetsBtn}
             onClick={() => setShowTargets(true)}
           >
-            ⚙ Edit Targets
+            ✨ Your Target Manager (Click to Edit)
           </button>
         </div>
 
@@ -74,17 +74,17 @@ export default function CorporateTab({ corporate, month, onRefresh }) {
           display: 'inline-flex',
           alignItems: 'center',
           gap: 6,
-          marginTop: 10,
+          marginTop: 14,
           padding: '8px 14px',
           borderRadius: 20,
-          background: ahead ? 'rgba(67,233,123,0.1)' : 'rgba(255,95,109,0.1)',
-          border: `1px solid ${ahead ? 'rgba(67,233,123,0.25)' : 'rgba(255,95,109,0.25)'}`,
+          background: ahead ? 'rgba(42, 92, 61, 0.08)' : 'rgba(124, 43, 54, 0.08)',
+          border: `1px solid ${ahead ? 'rgba(42, 92, 61, 0.2)' : 'rgba(124, 43, 54, 0.2)'}`,
         }}>
           <div style={{
             width: 7, height: 7, borderRadius: '50%',
-            background: ahead ? '#43e97b' : '#ff5f6d',
+            background: ahead ? '#2A5C3D' : '#7C2B36',
           }} />
-          <span style={{ fontSize: 13, fontWeight: 600, color: ahead ? '#43e97b' : '#ff5f6d' }}>
+          <span style={{ fontSize: 13, fontWeight: 700, color: ahead ? '#2A5C3D' : '#7C2B36' }}>
             {ahead
               ? `Ahead of pace by ${formatCurrency(varAmt)}`
               : `Behind pace by ${formatCurrency(varAmt)}`}
@@ -194,8 +194,8 @@ function StatBox({ label, value }) {
 function TodayStat({ label, value }) {
   return (
     <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: 16, fontWeight: 700, color: '#F5C842' }}>{value}</div>
-      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>{label}</div>
+      <div style={{ fontSize: 16, fontWeight: 700, color: '#D4A373' }}>{value}</div>
+      <div style={{ fontSize: 11, color: '#7A5E65', marginTop: 2, fontWeight: 500 }}>{label}</div>
     </div>
   )
 }
@@ -204,10 +204,10 @@ const styles = {
   container: { padding: '20px 16px 40px', display: 'flex', flexDirection: 'column', gap: 16 },
   viewToggleBar: {
     display: 'flex',
-    background: 'rgba(255,255,255,0.05)',
+    background: 'rgba(255, 255, 255, 0.65)',
     borderRadius: 12,
     padding: 3,
-    border: '1px solid rgba(255,255,255,0.08)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
   },
   toggleBtn: {
     flex: 1,
@@ -215,7 +215,7 @@ const styles = {
     background: 'none',
     border: 'none',
     borderRadius: 9,
-    color: 'rgba(255,255,255,0.5)',
+    color: '#7A5E65',
     fontSize: 12,
     fontWeight: 600,
     cursor: 'pointer',
@@ -223,30 +223,35 @@ const styles = {
     transition: 'all 0.2s ease',
   },
   toggleBtnActive: {
-    background: 'rgba(245,200,66,0.18)',
-    color: '#F5C842',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+    background: 'rgba(212, 163, 115, 0.18)',
+    color: '#B57A3C',
+    boxShadow: '0 2px 8px rgba(212, 163, 115, 0.1)',
   },
-  header: { paddingBottom: 4 },
+  header: { paddingBottom: 4, textAlign: 'center' },
   editTargetsBtn: {
-    background: 'rgba(245,200,66,0.12)',
-    border: '1px solid rgba(245,200,66,0.35)',
-    color: '#F5C842',
-    fontSize: 12,
-    fontWeight: 600,
-    padding: '5px 10px',
-    borderRadius: 8,
+    background: 'rgba(212, 163, 115, 0.12)',
+    border: '1px solid rgba(212, 163, 115, 0.35)',
+    color: '#B57A3C',
+    fontSize: 13,
+    fontWeight: 700,
+    padding: '10px 16px',
+    borderRadius: 12,
     cursor: 'pointer',
     fontFamily: 'Inter, sans-serif',
+    width: '100%',
+    textAlign: 'center',
+    boxShadow: '0 2px 8px rgba(212, 163, 115, 0.06)',
   },
   ringsCard: {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
+    background: 'rgba(255, 255, 255, 0.65)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
     borderRadius: 16,
     padding: '24px 16px',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
+    boxShadow: '0 8px 24px rgba(74, 46, 53, 0.03)',
+    backdropFilter: 'blur(8px)',
   },
   statsRow: {
     display: 'grid',
@@ -254,27 +259,31 @@ const styles = {
     gap: 8,
   },
   statBox: {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
+    background: 'rgba(255, 255, 255, 0.65)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
     borderRadius: 12,
     padding: '14px 8px',
     textAlign: 'center',
+    boxShadow: '0 4px 16px rgba(74, 46, 53, 0.02)',
+    backdropFilter: 'blur(8px)',
   },
-  statValue: { fontSize: 14, fontWeight: 700, color: '#fff', wordBreak: 'break-word' },
-  statLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', marginTop: 4, textTransform: 'uppercase', letterSpacing: 0.4 },
+  statValue: { fontSize: 13, fontWeight: 700, color: '#4A2E35', wordBreak: 'break-word' },
+  statLabel: { fontSize: 9, color: '#7A5E65', marginTop: 4, textTransform: 'uppercase', letterSpacing: 0.4, fontWeight: 600 },
   card: {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
+    background: 'rgba(255, 255, 255, 0.65)',
+    border: '1px solid rgba(74, 46, 53, 0.08)',
     borderRadius: 16,
     padding: '18px 16px',
+    boxShadow: '0 8px 24px rgba(74, 46, 53, 0.03)',
+    backdropFilter: 'blur(8px)',
   },
   cardHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
-  cardTitle: { fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' },
+  cardTitle: { fontSize: 14, fontWeight: 700, color: '#4A2E35' },
   linkBtn: {
-    background: 'none', border: 'none', color: '#F5C842',
-    fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'Inter, sans-serif',
+    background: 'none', border: 'none', color: '#D4A373',
+    fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'Inter, sans-serif',
     padding: '4px 0',
   },
-  emptyText: { fontSize: 13, color: 'rgba(255,255,255,0.35)', marginTop: 10 },
+  emptyText: { fontSize: 13, color: '#7A5E65', marginTop: 10, fontWeight: 500 },
   todayGrid: { display: 'flex', justifyContent: 'space-around', marginTop: 16 },
 }
