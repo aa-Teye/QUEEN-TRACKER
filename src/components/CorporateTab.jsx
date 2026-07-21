@@ -9,11 +9,24 @@ export default function CorporateTab({ corporate, month, onRefresh }) {
   const [showForm, setShowForm] = useState(false)
   const [showHistory, setShowHistory] = useState(false)
   const [showTargets, setShowTargets] = useState(false)
+  const [viewMode, setViewMode] = useState('monthly') // 'monthly' | 'quarterly'
 
   const c = corporate || {}
-  const cashPct = pct(c.cash_mtd, c.cash_target)
-  const visPct = pct(c.visitations_mtd, c.visitation_target)
-  const accPct = pct(c.accounts_mtd, c.account_target)
+  const isQuarterly = viewMode === 'quarterly'
+  const multiplier = isQuarterly ? 3 : 1
+
+  const activeCashTarget = (c.cash_target || 0) * multiplier
+  const activeVisTarget = (c.visitation_target || 0) * multiplier
+  const activeAccTarget = (c.account_target || 0) * multiplier
+
+  const cashPct = pct(c.cash_mtd, activeCashTarget)
+  const visPct = pct(c.visitations_mtd, activeVisTarget)
+  const accPct = pct(c.accounts_mtd, activeAccTarget)
+
+  const cashRemaining = activeCashTarget - (c.cash_mtd || 0)
+  const visRemaining = activeVisTarget - (c.visitations_mtd || 0)
+  const accRemaining = activeAccTarget - (c.accounts_mtd || 0)
+
   const variance = c.pacing_variance || 0
   const ahead = variance <= 0
   const varAmt = Math.abs(variance)
@@ -21,11 +34,33 @@ export default function CorporateTab({ corporate, month, onRefresh }) {
   return (
     <div style={styles.container}>
 
+      {/* View Toggle Bar */}
+      <div style={styles.viewToggleBar}>
+        <button
+          style={{
+            ...styles.toggleBtn,
+            ...(viewMode === 'monthly' ? styles.toggleBtnActive : {})
+          }}
+          onClick={() => setViewMode('monthly')}
+        >
+          Monthly View
+        </button>
+        <button
+          style={{
+            ...styles.toggleBtn,
+            ...(viewMode === 'quarterly' ? styles.toggleBtnActive : {})
+          }}
+          onClick={() => setViewMode('quarterly')}
+        >
+          Quarterly View (3M)
+        </button>
+      </div>
+
       {/* Month + Pacing Banner */}
       <div style={styles.header}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: 1, textTransform: 'uppercase' }}>
-            {formatMonth(month)} Targets
+            {isQuarterly ? 'Quarterly Target Overview' : `${formatMonth(month)} Targets`}
           </div>
           <button
             style={styles.editTargetsBtn}
@@ -62,25 +97,25 @@ export default function CorporateTab({ corporate, month, onRefresh }) {
         <ProgressRing
           percent={cashPct}
           label="Cash"
-          sub={`${formatCurrency(c.cash_mtd)} of ${formatCurrency(c.cash_target)}`}
+          sub={`${formatCurrency(c.cash_mtd)} of ${formatCurrency(activeCashTarget)}`}
         />
         <ProgressRing
           percent={visPct}
           label="Visitations"
-          sub={`${formatNumber(c.visitations_mtd)} of ${formatNumber(c.visitation_target)}`}
+          sub={`${formatNumber(c.visitations_mtd)} of ${formatNumber(activeVisTarget)}`}
         />
         <ProgressRing
           percent={accPct}
           label="Accounts"
-          sub={`${formatNumber(c.accounts_mtd)} of ${formatNumber(c.account_target)}`}
+          sub={`${formatNumber(c.accounts_mtd)} of ${formatNumber(activeAccTarget)}`}
         />
       </div>
 
       {/* Stats Row */}
       <div style={styles.statsRow}>
-        <StatBox label="Cash Remaining" value={formatCurrency(c.cash_remaining)} />
-        <StatBox label="Visits Left" value={formatNumber(c.visitations_remaining)} />
-        <StatBox label="Accounts Left" value={formatNumber(c.accounts_remaining)} />
+        <StatBox label="Cash Remaining" value={formatCurrency(cashRemaining)} />
+        <StatBox label="Visits Left" value={formatNumber(visRemaining)} />
+        <StatBox label="Accounts Left" value={formatNumber(accRemaining)} />
       </div>
 
       {/* Today's Entry */}
@@ -167,6 +202,31 @@ function TodayStat({ label, value }) {
 
 const styles = {
   container: { padding: '20px 16px 40px', display: 'flex', flexDirection: 'column', gap: 16 },
+  viewToggleBar: {
+    display: 'flex',
+    background: 'rgba(255,255,255,0.05)',
+    borderRadius: 12,
+    padding: 3,
+    border: '1px solid rgba(255,255,255,0.08)',
+  },
+  toggleBtn: {
+    flex: 1,
+    padding: '8px 12px',
+    background: 'none',
+    border: 'none',
+    borderRadius: 9,
+    color: 'rgba(255,255,255,0.5)',
+    fontSize: 12,
+    fontWeight: 600,
+    cursor: 'pointer',
+    fontFamily: 'Inter, sans-serif',
+    transition: 'all 0.2s ease',
+  },
+  toggleBtnActive: {
+    background: 'rgba(245,200,66,0.18)',
+    color: '#F5C842',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+  },
   header: { paddingBottom: 4 },
   editTargetsBtn: {
     background: 'rgba(245,200,66,0.12)',

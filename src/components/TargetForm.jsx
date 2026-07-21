@@ -79,13 +79,24 @@ export default function TargetForm({ existing, month, onSuccess, onClose }) {
             />
           </div>
 
-          {numCash > 0 && (
+          {(numCash > 0 || Number(visTarget) > 0 || Number(accTarget) > 0) && (
             <div style={styles.quarterBadge}>
-              <div style={{ fontSize: 11, color: 'rgba(245,200,66,0.8)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+              <div style={{ fontSize: 11, color: 'rgba(245,200,66,0.9)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
                 Quarterly Target Projection (3 Months)
               </div>
-              <div style={{ fontSize: 17, fontWeight: 700, color: '#F5C842', marginTop: 4 }}>
-                {formatCurrency(calculatedQuarter)}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, textAlign: 'center' }}>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#F5C842' }}>{formatCurrency(numCash * 3)}</div>
+                  <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Quarter Cash</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#F5C842' }}>{formatNumber((Number(visTarget) || 0) * 3)}</div>
+                  <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Quarter Visits</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#F5C842' }}>{formatNumber((Number(accTarget) || 0) * 3)}</div>
+                  <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Quarter Accounts</div>
+                </div>
               </div>
             </div>
           )}
