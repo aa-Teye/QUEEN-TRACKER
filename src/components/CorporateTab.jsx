@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import ProgressRing from './ProgressRing'
 import DailyEntryForm from './DailyEntryForm'
 import HistoryView from './HistoryView'
+import TargetForm from './TargetForm'
 import { formatCurrency, formatNumber, formatMonth, pct } from '../lib/format'
 
 export default function CorporateTab({ corporate, month, onRefresh }) {
   const [showForm, setShowForm] = useState(false)
   const [showHistory, setShowHistory] = useState(false)
+  const [showTargets, setShowTargets] = useState(false)
 
   const c = corporate || {}
   const cashPct = pct(c.cash_mtd, c.cash_target)
@@ -21,14 +23,23 @@ export default function CorporateTab({ corporate, month, onRefresh }) {
 
       {/* Month + Pacing Banner */}
       <div style={styles.header}>
-        <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: 1, textTransform: 'uppercase' }}>
-          {formatMonth(month)}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: 1, textTransform: 'uppercase' }}>
+            {formatMonth(month)} Targets
+          </div>
+          <button
+            style={styles.editTargetsBtn}
+            onClick={() => setShowTargets(true)}
+          >
+            ⚙ Edit Targets
+          </button>
         </div>
+
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: 6,
-          marginTop: 8,
+          marginTop: 10,
           padding: '8px 14px',
           borderRadius: 20,
           background: ahead ? 'rgba(67,233,123,0.1)' : 'rgba(255,95,109,0.1)',
@@ -119,6 +130,19 @@ export default function CorporateTab({ corporate, month, onRefresh }) {
         </div>
         {showHistory && <HistoryView cashTarget={c.cash_target} />}
       </div>
+
+      {/* Target Settings Modal */}
+      {showTargets && (
+        <TargetForm
+          existing={c}
+          month={month}
+          onClose={() => setShowTargets(false)}
+          onSuccess={() => {
+            setShowTargets(false)
+            onRefresh && onRefresh()
+          }}
+        />
+      )}
     </div>
   )
 }
@@ -143,7 +167,18 @@ function TodayStat({ label, value }) {
 
 const styles = {
   container: { padding: '20px 16px 40px', display: 'flex', flexDirection: 'column', gap: 16 },
-  header: { textAlign: 'center', paddingBottom: 4 },
+  header: { paddingBottom: 4 },
+  editTargetsBtn: {
+    background: 'rgba(245,200,66,0.12)',
+    border: '1px solid rgba(245,200,66,0.35)',
+    color: '#F5C842',
+    fontSize: 12,
+    fontWeight: 600,
+    padding: '5px 10px',
+    borderRadius: 8,
+    cursor: 'pointer',
+    fontFamily: 'Inter, sans-serif',
+  },
   ringsCard: {
     background: 'rgba(255,255,255,0.04)',
     border: '1px solid rgba(255,255,255,0.08)',

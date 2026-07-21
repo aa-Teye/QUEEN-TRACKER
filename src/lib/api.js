@@ -33,3 +33,12 @@ export function submitBusiness(data) {
     body: JSON.stringify(data),
   })
 }
+
+export function submitConfig(data) {
+  return request(`${BASE}?action=submitConfig`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data),
+  })
+}
+
