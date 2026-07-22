@@ -1,7 +1,10 @@
 import { useState, useCallback } from 'react'
 
-const CORRECT_PIN = import.meta.env.VITE_APP_PIN || '1234'
 const SESSION_KEY = 'qt_unlocked'
+
+function getExpectedPin() {
+  return localStorage.getItem('qt_custom_pin') || import.meta.env.VITE_APP_PIN || '1234'
+}
 
 function PinDot({ filled }) {
   return (
@@ -9,9 +12,9 @@ function PinDot({ filled }) {
       width: 14,
       height: 14,
       borderRadius: '50%',
-      background: filled ? '#D4A373' : 'rgba(74, 46, 53, 0.1)',
+      background: filled ? '#FF4D6D' : 'rgba(92, 13, 38, 0.1)',
       border: '2px solid',
-      borderColor: filled ? '#D4A373' : 'rgba(74, 46, 53, 0.25)',
+      borderColor: filled ? '#FF4D6D' : 'rgba(92, 13, 38, 0.25)',
       transition: 'all 0.2s ease',
       transform: filled ? 'scale(1.2)' : 'scale(1)'
     }} />
@@ -36,11 +39,11 @@ function PinButton({ label, onClick, disabled }) {
         width: 72,
         height: 72,
         borderRadius: '50%',
-        border: '1.5px solid rgba(74, 46, 53, 0.08)',
+        border: '1.5px solid rgba(92, 13, 38, 0.08)',
         background: pressed
-          ? 'rgba(212, 163, 115, 0.2)'
-          : 'rgba(255, 255, 255, 0.75)',
-        color: '#4A2E35',
+          ? 'rgba(255, 77, 109, 0.15)'
+          : 'rgba(255, 255, 255, 0.88)',
+        color: '#5C0D26',
         fontSize: label === '⌫' ? 22 : 26,
         fontWeight: label === '⌫' ? 400 : 600,
         fontFamily: 'Inter, sans-serif',
@@ -48,8 +51,8 @@ function PinButton({ label, onClick, disabled }) {
         transition: 'all 0.15s ease',
         transform: pressed ? 'scale(0.92)' : 'scale(1)',
         boxShadow: pressed
-          ? '0 0 15px rgba(212, 163, 115, 0.25)'
-          : '0 2px 8px rgba(74, 46, 53, 0.05)',
+          ? '0 0 15px rgba(255, 77, 109, 0.2)'
+          : '0 2px 8px rgba(92, 13, 38, 0.04)',
         backdropFilter: 'blur(10px)',
         WebkitTapHighlightColor: 'transparent',
         userSelect: 'none',
@@ -68,7 +71,9 @@ export default function PinGate({ onUnlock }) {
   const [pin, setPin] = useState('')
   const [error, setError] = useState('')
   const [shake, setShake] = useState(false)
-  const PIN_LENGTH = CORRECT_PIN.length
+  
+  const expectedPin = getExpectedPin()
+  const PIN_LENGTH = expectedPin.length
 
   const handleDigit = useCallback((digit) => {
     if (pin.length >= PIN_LENGTH) return
@@ -78,7 +83,7 @@ export default function PinGate({ onUnlock }) {
 
     if (newPin.length === PIN_LENGTH) {
       setTimeout(() => {
-        if (newPin === CORRECT_PIN) {
+        if (newPin === expectedPin) {
           sessionStorage.setItem(SESSION_KEY, '1')
           onUnlock()
         } else {
@@ -91,7 +96,7 @@ export default function PinGate({ onUnlock }) {
         }
       }, 150)
     }
-  }, [pin, PIN_LENGTH, onUnlock])
+  }, [pin, PIN_LENGTH, expectedPin, onUnlock])
 
   const handleDelete = useCallback(() => {
     setPin(p => p.slice(0, -1))
@@ -113,7 +118,7 @@ export default function PinGate({ onUnlock }) {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '40px 24px',
-      background: 'linear-gradient(135deg, #FFF0F2 0%, #FFFDF9 100%)',
+      background: 'linear-gradient(135deg, #FFE5EC 0%, #FFC2D1 100%)',
       position: 'relative',
       overflow: 'hidden',
     }}>
@@ -123,7 +128,7 @@ export default function PinGate({ onUnlock }) {
         transform: 'translateX(-50%)',
         width: 300, height: 300,
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 163, 115, 0.1) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(255, 77, 109, 0.08) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
 
@@ -134,25 +139,25 @@ export default function PinGate({ onUnlock }) {
           height: 64,
           borderRadius: 20,
           background: 'linear-gradient(135deg, #FFFDF9, #FFF0F2)',
-          border: '1.5px solid #D4A373',
+          border: '1.5px solid #FF4D6D',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           margin: '0 auto 16px',
-          boxShadow: '0 8px 24px rgba(212, 163, 115, 0.15)',
+          boxShadow: '0 8px 24px rgba(255, 77, 109, 0.1)',
         }}>
-          <span style={{ fontSize: 26, fontWeight: 800, color: '#D4A373', letterSpacing: -1 }}>QT</span>
+          <span style={{ fontSize: 26, fontWeight: 800, color: '#FF4D6D', letterSpacing: -1 }}>QT</span>
         </div>
         <h1 style={{
           fontSize: 24,
           fontWeight: 800,
-          color: '#4A2E35',
+          color: '#5C0D26',
           letterSpacing: -0.5,
           marginBottom: 6
         }}>
           Welcome, Selly
         </h1>
-        <p style={{ fontSize: 14, color: '#7A5E65', fontWeight: 500 }}>
+        <p style={{ fontSize: 14, color: '#7C2B36', fontWeight: 500 }}>
           Kindly enter your PIN
         </p>
       </div>

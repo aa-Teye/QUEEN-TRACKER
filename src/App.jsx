@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import PinGate from './PinGate'
 import CorporateTab from './components/CorporateTab'
 import BusinessTab from './components/BusinessTab'
+import ChangePinModal from './components/ChangePinModal'
 import { getDashboard } from './lib/api'
 
 const SESSION_KEY = 'qt_unlocked'
@@ -11,6 +12,7 @@ function MainApp() {
   const [dashboard, setDashboard] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [showSettings, setShowSettings] = useState(false)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -43,9 +45,14 @@ function MainApp() {
           <span style={styles.logoText}>QT</span>
         </div>
         <span style={styles.appName}>Hello, Queen</span>
-        <button style={styles.refreshBtn} onClick={load} title="Refresh">
-          {loading ? '...' : '↺'}
-        </button>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          <button style={styles.refreshBtn} onClick={load} title="Refresh">
+            {loading ? '...' : '↺'}
+          </button>
+          <button style={styles.refreshBtn} onClick={() => setShowSettings(true)} title="Settings">
+            ⚙️
+          </button>
+        </div>
       </header>
 
       {/* Tab Bar */}
@@ -101,6 +108,11 @@ function MainApp() {
           </>
         )}
       </main>
+
+      {/* Settings / Change PIN Modal */}
+      {showSettings && (
+        <ChangePinModal onClose={() => setShowSettings(false)} />
+      )}
     </div>
   )
 }
