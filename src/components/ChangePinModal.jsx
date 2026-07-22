@@ -41,8 +41,8 @@ export default function ChangePinModal({ onClose }) {
       <div style={styles.modal}>
         <div style={styles.header}>
           <div>
-            <h2 style={{ fontSize: 18, fontWeight: 800, color: '#5C0D26' }}>Change Security PIN</h2>
-            <p style={{ fontSize: 12, color: '#7C2B36', marginTop: 2, fontWeight: 500 }}>
+            <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--rose-pale)' }}>Change Security PIN</h2>
+            <p style={{ fontSize: 12, color: 'var(--rose-pastel)', marginTop: 2, fontWeight: 500 }}>
               Update your app entry passcode
             </p>
           </div>
@@ -119,7 +119,7 @@ const styles = {
   overlay: {
     position: 'fixed',
     top: 0, left: 0, right: 0, bottom: 0,
-    background: 'rgba(74, 46, 53, 0.4)',
+    background: 'rgba(201, 24, 74, 0.4)',
     backdropFilter: 'blur(8px)',
     zIndex: 110,
     display: 'flex',
@@ -128,13 +128,13 @@ const styles = {
     padding: 16,
   },
   modal: {
-    background: 'linear-gradient(135deg, #FFF0F2 0%, #FFFDF9 100%)',
-    border: '1px solid rgba(212, 163, 115, 0.3)',
+    background: 'linear-gradient(135deg, var(--rose-light) 0%, var(--rose-mid) 100%)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
     borderRadius: 20,
     padding: 24,
     width: '100%',
     maxWidth: 380,
-    boxShadow: '0 20px 50px rgba(74, 46, 53, 0.15)',
+    boxShadow: '0 20px 50px rgba(201, 24, 74, 0.3)',
   },
   header: {
     display: 'flex',
@@ -143,9 +143,9 @@ const styles = {
     marginBottom: 20,
   },
   closeBtn: {
-    background: 'rgba(74, 46, 53, 0.06)',
+    background: 'rgba(255, 255, 255, 0.12)',
     border: 'none',
-    color: '#4A2E35',
+    color: 'var(--rose-pale)',
     fontSize: 16,
     width: 32,
     height: 32,
@@ -160,40 +160,40 @@ const styles = {
   label: {
     fontSize: 11,
     fontWeight: 600,
-    color: '#7C2B36',
+    color: 'var(--rose-pastel)',
     letterSpacing: 0.5,
     textTransform: 'uppercase',
   },
   input: {
-    background: 'rgba(255, 255, 255, 0.7)',
-    border: '1px solid rgba(74, 46, 53, 0.12)',
+    background: 'rgba(255, 255, 255, 0.15)',
+    border: '1px solid rgba(255, 255, 255, 0.25)',
     borderRadius: 10,
-    color: '#5C0D26',
+    color: 'var(--rose-pale)',
     fontSize: 15,
     fontFamily: 'Inter, sans-serif',
     padding: '11px 12px',
     outline: 'none',
     width: '100%',
-    colorScheme: 'light',
+    colorScheme: 'dark',
     letterSpacing: '3px',
   },
   errorAlert: {
     padding: '10px 14px', borderRadius: 8, fontSize: 13, fontWeight: 600,
-    background: 'rgba(124, 43, 54, 0.08)',
-    color: '#7C2B36',
-    border: '1px solid rgba(124, 43, 54, 0.2)',
+    background: 'rgba(255, 181, 167, 0.18)',
+    color: '#FFB5A7',
+    border: '1px solid rgba(255, 181, 167, 0.3)',
   },
   successAlert: {
     padding: '10px 14px', borderRadius: 8, fontSize: 13, fontWeight: 600,
-    background: 'rgba(42, 92, 61, 0.08)',
-    color: '#2A5C3D',
-    border: '1px solid rgba(42, 92, 61, 0.2)',
+    background: 'rgba(216, 243, 220, 0.18)',
+    color: 'var(--success)',
+    border: '1px solid rgba(216, 243, 220, 0.3)',
   },
   cancelBtn: {
     flex: 1,
-    background: 'rgba(74, 46, 53, 0.06)',
-    border: '1px solid rgba(74, 46, 53, 0.1)',
-    color: '#5C0D26',
+    background: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.15)',
+    color: 'var(--rose-pale)',
     fontWeight: 600,
     fontSize: 14,
     padding: 12,
@@ -203,15 +203,15 @@ const styles = {
   },
   submitBtn: {
     flex: 1.2,
-    background: '#FF4D6D',
-    border: 'none',
-    color: '#fff',
+    background: 'rgba(255, 255, 255, 0.22)',
+    border: '1px solid rgba(255, 255, 255, 0.35)',
+    color: 'var(--rose-pale)',
     fontWeight: 700,
     fontSize: 14,
     padding: 12,
     borderRadius: 10,
     cursor: 'pointer',
     fontFamily: 'Inter, sans-serif',
-    boxShadow: '0 4px 12px rgba(255, 77, 109, 0.2)',
+    boxShadow: '0 4px 12px rgba(201, 24, 74, 0.15)',
   },
 }

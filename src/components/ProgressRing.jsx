@@ -1,7 +1,7 @@
 const RADIUS = 44
 const CIRC = 2 * Math.PI * RADIUS
 
-export default function ProgressRing({ percent = 0, size = 120, stroke = 8, color = '#D4A373', label, sub }) {
+export default function ProgressRing({ percent = 0, size = 120, stroke = 8, color = 'var(--rose-pale)', label, sub }) {
   const offset = CIRC - (percent / 100) * CIRC
 
   return (
@@ -11,7 +11,7 @@ export default function ProgressRing({ percent = 0, size = 120, stroke = 8, colo
         <circle
           cx="50" cy="50" r={RADIUS}
           fill="none"
-          stroke="rgba(74, 46, 53, 0.08)"
+          stroke="rgba(255, 255, 255, 0.18)"
           strokeWidth={stroke}
         />
         {/* Progress */}
@@ -30,7 +30,7 @@ export default function ProgressRing({ percent = 0, size = 120, stroke = 8, colo
           x="50" y="50"
           textAnchor="middle"
           dominantBaseline="middle"
-          fill="#4A2E35"
+          fill="var(--rose-pale)"
           fontSize="16"
           fontWeight="700"
           fontFamily="Inter, sans-serif"
@@ -40,11 +40,11 @@ export default function ProgressRing({ percent = 0, size = 120, stroke = 8, colo
         </text>
       </svg>
       <div style={{ textAlign: 'center' }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: '#4A2E35', letterSpacing: 0.4 }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--rose-pale)', letterSpacing: 0.4 }}>
           {label}
         </div>
         {sub && (
-          <div style={{ fontSize: 10, color: '#7A5E65', marginTop: 2, fontWeight: 500 }}>
+          <div style={{ fontSize: 10, color: 'var(--rose-pastel)', marginTop: 2, fontWeight: 500 }}>
             {sub}
           </div>
         )}

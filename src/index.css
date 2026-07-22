@@ -11,18 +11,14 @@
 }
 
 :root {
-  --purple-deep:   #1a0f3c;
-  --purple-mid:    #2D1B69;
-  --purple-light:  #4a2f9a;
-  --gold:          #F5C842;
-  --gold-dark:     #d4a517;
-  --gold-glow:     rgba(245, 200, 66, 0.3);
-  --white:         #ffffff;
-  --white-70:      rgba(255,255,255,0.7);
-  --white-20:      rgba(255,255,255,0.1);
-  --white-10:      rgba(255,255,255,0.06);
-  --error:         #ff5f6d;
-  --success:       #43e97b;
+  --rose-dark:     #C9184A;
+  --rose-mid:      #FF4D6D;
+  --rose-light:    #FF8FA3;
+  --rose-pale:     #FFF0F3;
+  --rose-pastel:   #FFCCD5;
+  --white-10:      rgba(255,255,255,0.08);
+  --error:         #FFB5A7;
+  --success:       #D8F3DC;
   --radius:        16px;
   --radius-sm:     10px;
 }
@@ -34,8 +30,8 @@ html, body, #root {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--purple-deep);
-  color: var(--white);
+  background: linear-gradient(160deg, var(--rose-light) 0%, var(--rose-mid) 50%, var(--rose-dark) 100%);
+  color: var(--rose-pale);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

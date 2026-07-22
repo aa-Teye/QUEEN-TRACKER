@@ -142,8 +142,8 @@ export default function TargetForm({ existing, month, onSuccess, onClose }) {
       <div style={styles.modal}>
         <div style={styles.modalHeader}>
           <div>
-            <h2 style={{ fontSize: 18, fontWeight: 800, color: '#4A2E35' }}>Target Settings</h2>
-            <p style={{ fontSize: 12, color: '#7A5E65', marginTop: 2, fontWeight: 500 }}>
+            <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--rose-pale)' }}>Target Settings</h2>
+            <p style={{ fontSize: 12, color: 'var(--rose-pastel)', marginTop: 2, fontWeight: 500 }}>
               Configure corporate goals
             </p>
           </div>
@@ -428,7 +428,7 @@ const styles = {
   overlay: {
     position: 'fixed',
     top: 0, left: 0, right: 0, bottom: 0,
-    background: 'rgba(74, 46, 53, 0.4)',
+    background: 'rgba(201, 24, 74, 0.4)',
     backdropFilter: 'blur(8px)',
     zIndex: 100,
     display: 'flex',
@@ -437,13 +437,13 @@ const styles = {
     padding: 16,
   },
   modal: {
-    background: 'linear-gradient(135deg, #FFF0F2 0%, #FFFDF9 100%)',
-    border: '1px solid rgba(212, 163, 115, 0.3)',
+    background: 'linear-gradient(135deg, var(--rose-light) 0%, var(--rose-mid) 100%)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
     borderRadius: 20,
     padding: 24,
     width: '100%',
     maxWidth: 420,
-    boxShadow: '0 20px 50px rgba(74, 46, 53, 0.15)',
+    boxShadow: '0 20px 50px rgba(201, 24, 74, 0.3)',
   },
   modalHeader: {
     display: 'flex',
@@ -452,9 +452,9 @@ const styles = {
     marginBottom: 16,
   },
   closeBtn: {
-    background: 'rgba(74, 46, 53, 0.06)',
+    background: 'rgba(255, 255, 255, 0.12)',
     border: 'none',
-    color: '#4A2E35',
+    color: 'var(--rose-pale)',
     fontSize: 16,
     width: 32,
     height: 32,
@@ -466,10 +466,10 @@ const styles = {
   },
   levelToggle: {
     display: 'flex',
-    background: 'rgba(255, 255, 255, 0.65)',
+    background: 'rgba(255, 255, 255, 0.12)',
     borderRadius: 12,
     padding: 3,
-    border: '1px solid rgba(74, 46, 53, 0.08)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
     marginBottom: 16,
   },
   toggleBtn: {
@@ -478,7 +478,7 @@ const styles = {
     background: 'none',
     border: 'none',
     borderRadius: 9,
-    color: '#7A5E65',
+    color: 'var(--rose-pastel)',
     fontSize: 12,
     fontWeight: 600,
     cursor: 'pointer',
@@ -486,9 +486,9 @@ const styles = {
     transition: 'all 0.2s ease',
   },
   toggleBtnActive: {
-    background: 'rgba(212, 163, 115, 0.18)',
-    color: '#B57A3C',
-    boxShadow: '0 2px 8px rgba(212, 163, 115, 0.1)',
+    background: 'rgba(255, 255, 255, 0.25)',
+    color: 'var(--rose-pale)',
+    boxShadow: '0 2px 8px rgba(201, 24, 74, 0.15)',
   },
   form: { display: 'flex', flexDirection: 'column', gap: 12 },
   row: { display: 'flex', flexDirection: 'column', gap: 6 },
@@ -496,27 +496,27 @@ const styles = {
   label: {
     fontSize: 11,
     fontWeight: 600,
-    color: '#7A5E65',
+    color: 'var(--rose-pastel)',
     letterSpacing: 0.5,
     textTransform: 'uppercase',
   },
   input: {
-    background: 'rgba(255, 255, 255, 0.7)',
-    border: '1px solid rgba(74, 46, 53, 0.12)',
+    background: 'rgba(255, 255, 255, 0.15)',
+    border: '1px solid rgba(255, 255, 255, 0.25)',
     borderRadius: 10,
-    color: '#4A2E35',
+    color: 'var(--rose-pale)',
     fontSize: 15,
     fontFamily: 'Inter, sans-serif',
     padding: '11px 12px',
     outline: 'none',
     width: '100%',
-    colorScheme: 'light',
+    colorScheme: 'dark',
   },
   readOnlyInput: {
-    background: 'rgba(255, 255, 255, 0.3)',
-    border: '1px solid rgba(74, 46, 53, 0.08)',
+    background: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.15)',
     borderRadius: 10,
-    color: '#D4A373',
+    color: 'var(--rose-pale)',
     fontSize: 15,
     fontWeight: 700,
     fontFamily: 'Inter, sans-serif',
@@ -526,19 +526,19 @@ const styles = {
     width: '100%',
   },
   infoBadge: {
-    background: 'rgba(212, 163, 115, 0.08)',
-    border: '1px solid rgba(212, 163, 115, 0.2)',
+    background: 'rgba(255, 255, 255, 0.12)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
     borderRadius: 10,
     padding: '10px 12px',
     fontSize: 12,
-    color: '#B57A3C',
+    color: 'var(--rose-pale)',
     fontWeight: 500,
   },
   cancelBtn: {
     flex: 1,
-    background: 'rgba(74, 46, 53, 0.06)',
-    border: '1px solid rgba(74, 46, 53, 0.1)',
-    color: '#4A2E35',
+    background: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.15)',
+    color: 'var(--rose-pale)',
     fontWeight: 600,
     fontSize: 14,
     padding: 12,
@@ -548,15 +548,15 @@ const styles = {
   },
   submitBtn: {
     flex: 1,
-    background: '#D4A373',
-    border: 'none',
-    color: '#fff',
+    background: 'rgba(255, 255, 255, 0.22)',
+    border: '1px solid rgba(255, 255, 255, 0.35)',
+    color: 'var(--rose-pale)',
     fontWeight: 700,
     fontSize: 14,
     padding: 12,
     borderRadius: 10,
     cursor: 'pointer',
     fontFamily: 'Inter, sans-serif',
-    boxShadow: '0 4px 12px rgba(212, 163, 115, 0.2)',
+    boxShadow: '0 4px 12px rgba(201, 24, 74, 0.15)',
   },
 }

@@ -12,9 +12,9 @@ function PinDot({ filled }) {
       width: 14,
       height: 14,
       borderRadius: '50%',
-      background: filled ? '#FF4D6D' : 'rgba(92, 13, 38, 0.1)',
+      background: filled ? 'var(--rose-pale)' : 'rgba(255, 255, 255, 0.15)',
       border: '2px solid',
-      borderColor: filled ? '#FF4D6D' : 'rgba(92, 13, 38, 0.25)',
+      borderColor: filled ? 'var(--rose-pale)' : 'rgba(255, 255, 255, 0.3)',
       transition: 'all 0.2s ease',
       transform: filled ? 'scale(1.2)' : 'scale(1)'
     }} />
@@ -39,11 +39,11 @@ function PinButton({ label, onClick, disabled }) {
         width: 72,
         height: 72,
         borderRadius: '50%',
-        border: '1.5px solid rgba(92, 13, 38, 0.08)',
+        border: '1px solid rgba(255, 255, 255, 0.25)',
         background: pressed
-          ? 'rgba(255, 77, 109, 0.15)'
-          : 'rgba(255, 255, 255, 0.88)',
-        color: '#5C0D26',
+          ? 'rgba(255, 255, 255, 0.35)'
+          : 'rgba(255, 255, 255, 0.15)',
+        color: 'var(--rose-pale)',
         fontSize: label === '⌫' ? 22 : 26,
         fontWeight: label === '⌫' ? 400 : 600,
         fontFamily: 'Inter, sans-serif',
@@ -51,8 +51,8 @@ function PinButton({ label, onClick, disabled }) {
         transition: 'all 0.15s ease',
         transform: pressed ? 'scale(0.92)' : 'scale(1)',
         boxShadow: pressed
-          ? '0 0 15px rgba(255, 77, 109, 0.2)'
-          : '0 2px 8px rgba(92, 13, 38, 0.04)',
+          ? '0 0 15px rgba(255, 255, 255, 0.3)'
+          : '0 4px 12px rgba(201, 24, 74, 0.1)',
         backdropFilter: 'blur(10px)',
         WebkitTapHighlightColor: 'transparent',
         userSelect: 'none',
@@ -118,7 +118,7 @@ export default function PinGate({ onUnlock }) {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '40px 24px',
-      background: 'linear-gradient(135deg, #FFE5EC 0%, #FFC2D1 100%)',
+      background: 'linear-gradient(160deg, var(--rose-light) 0%, var(--rose-mid) 50%, var(--rose-dark) 100%)',
       position: 'relative',
       overflow: 'hidden',
     }}>
@@ -128,7 +128,7 @@ export default function PinGate({ onUnlock }) {
         transform: 'translateX(-50%)',
         width: 300, height: 300,
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(255, 77, 109, 0.08) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
 
@@ -138,26 +138,26 @@ export default function PinGate({ onUnlock }) {
           width: 64,
           height: 64,
           borderRadius: 20,
-          background: 'linear-gradient(135deg, #FFFDF9, #FFF0F2)',
-          border: '1.5px solid #FF4D6D',
+          background: 'rgba(255, 255, 255, 0.15)',
+          border: '1px solid rgba(255, 255, 255, 0.35)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           margin: '0 auto 16px',
-          boxShadow: '0 8px 24px rgba(255, 77, 109, 0.1)',
+          boxShadow: '0 8px 24px rgba(201, 24, 74, 0.2)',
         }}>
-          <span style={{ fontSize: 26, fontWeight: 800, color: '#FF4D6D', letterSpacing: -1 }}>QT</span>
+          <span style={{ fontSize: 26, fontWeight: 800, color: 'var(--rose-pale)', letterSpacing: -1 }}>QT</span>
         </div>
         <h1 style={{
           fontSize: 24,
           fontWeight: 800,
-          color: '#5C0D26',
+          color: 'var(--rose-pale)',
           letterSpacing: -0.5,
           marginBottom: 6
         }}>
           Welcome, Selly
         </h1>
-        <p style={{ fontSize: 14, color: '#7C2B36', fontWeight: 500 }}>
+        <p style={{ fontSize: 14, color: 'var(--rose-pastel)', fontWeight: 500 }}>
           Kindly enter your PIN
         </p>
       </div>
@@ -185,9 +185,9 @@ export default function PinGate({ onUnlock }) {
       }}>
         {error && (
           <p style={{
-            color: 'var(--error)',
+            color: '#FFB5A7',
             fontSize: 13,
-            fontWeight: 600,
+            fontWeight: 700,
             textAlign: 'center',
             animation: 'fadeIn 0.2s ease',
           }}>
